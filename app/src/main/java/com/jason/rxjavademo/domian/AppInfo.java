@@ -1,5 +1,7 @@
 package com.jason.rxjavademo.domian;
 
+import android.graphics.drawable.Drawable;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -12,14 +14,12 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 public class AppInfo implements Comparable<Object> {
 
-    long mLastUpdateTime;
     String mName;
-    String mIcon;
+    Drawable mIconDra;
 
-    public AppInfo(String nName, long lastUpdateTime, String icon) {
+    public AppInfo(String nName, Drawable icon) {
         mName = nName;
-        mIcon = icon;
-        mLastUpdateTime = lastUpdateTime;
+        mIconDra = icon;
     }
 
     @Override

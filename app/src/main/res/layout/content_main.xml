@@ -32,10 +32,10 @@
                 android:layout_height="wrap_content"
                 android:text="filter Observables"/>
             <Button
-                android:id="@+id/btnMapping"
+                android:id="@+id/btnDebounce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mapping Observables"/>
+                android:text="text search"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

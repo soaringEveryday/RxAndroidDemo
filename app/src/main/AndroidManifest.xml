@@ -23,6 +23,11 @@
             android:label="@string/title_activity_app_info"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.TextSearchActivity"
+            android:label="@string/title_activity_text_search"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

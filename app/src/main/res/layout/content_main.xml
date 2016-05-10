@@ -25,7 +25,17 @@
                 android:id="@+id/btnAppInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="AppInfo"/>
+                android:text="create Observables"/>
+            <Button
+                android:id="@+id/btnAppInfoFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="filter Observables"/>
+            <Button
+                android:id="@+id/btnMapping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mapping Observables"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

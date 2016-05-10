@@ -69,12 +69,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({
-            R.id.btnAppInfo
+            R.id.btnAppInfo,
+            R.id.btnAppInfoFilter
     })
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.btnAppInfo:
-                startActivity(new Intent(this, AppInfoActivity.class));
+                intent = new Intent(this, AppInfoActivity.class);
+                intent.putExtra("type", "create");
+                startActivity(intent);
+                break;
+            case R.id.btnAppInfoFilter:
+                intent = new Intent(this, AppInfoActivity.class);
+                intent.putExtra("type", "filter");
+                startActivity(intent);
                 break;
         }
     }

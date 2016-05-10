@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jason.rxjavademo.activity.AppInfoActivity;
+import com.jason.rxjavademo.activity.MapScanActivity;
 import com.jason.rxjavademo.activity.TextSearchActivity;
 
 import butterknife.ButterKnife;
@@ -72,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({
             R.id.btnAppInfo,
             R.id.btnAppInfoFilter,
-            R.id.btnDebounce
+            R.id.btnDebounce,
+            R.id.btnMapScan
     })
     public void onClick(View view) {
         Intent intent;
@@ -91,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, TextSearchActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.btnMapScan:
+                intent = new Intent(this, MapScanActivity.class);
+                startActivity(intent);
+                break;
+
         }
     }
 

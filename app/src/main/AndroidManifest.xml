@@ -28,6 +28,11 @@
             android:label="@string/title_activity_text_search"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.MapScanActivity"
+            android:label="@string/title_activity_map_scan"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

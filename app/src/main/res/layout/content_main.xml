@@ -36,6 +36,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="text search"/>
+            <Button
+                android:id="@+id/btnMapScan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mapping(Scan)"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -33,6 +33,11 @@
             android:label="@string/title_activity_map_scan"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.ZipActivity"
+            android:label="@string/title_activity_zip"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

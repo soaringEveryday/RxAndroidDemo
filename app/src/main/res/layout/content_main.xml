@@ -41,6 +41,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mapping(Scan)"/>
+            <Button
+                android:id="@+id/btnZip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Observable zip"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

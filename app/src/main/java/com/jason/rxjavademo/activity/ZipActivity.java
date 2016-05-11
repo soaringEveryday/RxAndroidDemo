@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -16,16 +15,16 @@ import com.jason.rxjavademo.domian.AppInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import rx.Observable;
 import rx.Observer;
-import rx.functions.Func1;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func2;
 
-public class MapScanActivity extends AppCompatActivity {
+public class ZipActivity extends AppCompatActivity {
 
     @Bind(R.id.list)
     ListView listview;
@@ -37,10 +36,11 @@ public class MapScanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_scan);
+        setContentView(R.layout.activity_zip);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getApplicationList();
 
         mData = new ArrayList<>();
@@ -53,18 +53,22 @@ public class MapScanActivity extends AppCompatActivity {
         };
         listview.setAdapter(mAdapter);
 
-        Observable.from(appInfos)
-                .scan(new Func2<AppInfo, AppInfo, AppInfo>() {
-                    @Override
-                    public AppInfo call(AppInfo appInfo, AppInfo appInfo2) {
-                        if (appInfo.getName().length() > appInfo2.getName().length()) {
-                            return appInfo;
-                        } else {
-                            return appInfo2;
-                        }
-                    }
-                })
-                .distinct()
+        zip();
+
+    }
+
+    private void zip() {
+
+        Observable<AppInfo> appInfoObservable = Observable.from(appInfos);
+        Observable<Long> longObservable = Observable.interval(1, TimeUnit.SECONDS);
+
+        Observable.zip(appInfoObservable, longObservable, new Func2<AppInfo, Long, AppInfo>() {
+            @Override
+            public AppInfo call(AppInfo appInfo, Long aLong) {
+                appInfo.setName(String.valueOf(aLong) + " " + appInfo.getName());
+                return appInfo;
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AppInfo>() {
                     @Override
                     public void onCompleted() {
@@ -85,40 +89,6 @@ public class MapScanActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({
-            R.id.fab
-    })
-    public void onClick(View view) {
-        mData.clear();
-        mAdapter.notifyDataSetChanged();
-
-        Observable.from(appInfos)
-                .map(new Func1<AppInfo, AppInfo>() {
-                    @Override
-                    public AppInfo call(AppInfo appInfo) {
-                        String name = appInfo.getName();
-                        appInfo.setName(name.toUpperCase());
-                        return appInfo;
-                    }
-                })
-                .subscribe(new Observer<AppInfo>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(AppInfo o) {
-                        mData.add(o);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                });
-    }
 
     private void getApplicationList() {
         PackageManager pm = getPackageManager();

@@ -46,6 +46,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Observable zip"/>
+            <Button
+                android:id="@+id/btnSchedulers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="subscribeOn and ObserveOn"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

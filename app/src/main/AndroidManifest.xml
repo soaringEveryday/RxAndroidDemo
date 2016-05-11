@@ -38,6 +38,11 @@
             android:label="@string/title_activity_zip"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.SchedulersActivity"
+            android:label="@string/title_activity_schedulers"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

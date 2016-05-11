@@ -2,6 +2,7 @@ package com.jason.rxjavademo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.View;
 
 import com.jason.rxjavademo.activity.AppInfoActivity;
 import com.jason.rxjavademo.activity.MapScanActivity;
+import com.jason.rxjavademo.activity.SchedulersActivity;
 import com.jason.rxjavademo.activity.TextSearchActivity;
 import com.jason.rxjavademo.activity.ZipActivity;
 
@@ -26,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // open StrictMode
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
+        }
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.btnAppInfoFilter,
             R.id.btnDebounce,
             R.id.btnMapScan,
-            R.id.btnZip
+            R.id.btnZip,
+            R.id.btnSchedulers
     })
     public void onClick(View view) {
         Intent intent;
@@ -103,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, ZipActivity.class);
                 startActivity(intent);
                 break;
-
+            case R.id.btnSchedulers:
+                intent = new Intent(this, SchedulersActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 

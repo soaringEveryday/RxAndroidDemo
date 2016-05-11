@@ -21,8 +21,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func2;
+import rx.schedulers.Schedulers;
 
 public class ZipActivity extends AppCompatActivity {
 
@@ -68,7 +68,9 @@ public class ZipActivity extends AppCompatActivity {
                 appInfo.setName(String.valueOf(aLong) + " " + appInfo.getName());
                 return appInfo;
             }
-        }).observeOn(AndroidSchedulers.mainThread())
+        })
+//                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<AppInfo>() {
                     @Override
                     public void onCompleted() {

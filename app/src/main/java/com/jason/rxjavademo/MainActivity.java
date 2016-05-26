@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.jason.rxjavademo.activity.AppInfoActivity;
+import com.jason.rxjavademo.activity.DownloadFileActivity;
 import com.jason.rxjavademo.activity.MapScanActivity;
 import com.jason.rxjavademo.activity.SchedulersActivity;
 import com.jason.rxjavademo.activity.TextSearchActivity;
@@ -86,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.btnDebounce,
             R.id.btnMapScan,
             R.id.btnZip,
-            R.id.btnSchedulers
+            R.id.btnSchedulers,
+            R.id.btnDownloadFile
     })
     public void onClick(View view) {
         Intent intent;
@@ -115,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnSchedulers:
                 intent = new Intent(this, SchedulersActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnDownloadFile:
+                intent = new Intent(this, DownloadFileActivity.class);
                 startActivity(intent);
                 break;
         }

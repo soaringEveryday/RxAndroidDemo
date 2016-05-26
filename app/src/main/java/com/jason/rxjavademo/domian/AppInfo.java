@@ -2,16 +2,9 @@ package com.jason.rxjavademo.domian;
 
 import android.graphics.drawable.Drawable;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
-
 /**
  * Created by Chen Haitao on 2016/5/5.
  */
-@Data
-@Accessors(prefix = "m")
-@NoArgsConstructor
 public class AppInfo implements Comparable<Object> {
 
     String mName;
@@ -22,9 +15,28 @@ public class AppInfo implements Comparable<Object> {
         mIconDra = icon;
     }
 
+    public AppInfo() {
+    }
+
     @Override
     public int compareTo(Object another) {
         AppInfo f = (AppInfo)another;
         return getName().compareTo(f.getName());
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
+    }
+
+    public Drawable getIconDra() {
+        return mIconDra;
+    }
+
+    public void setIconDra(Drawable iconDra) {
+        mIconDra = iconDra;
     }
 }

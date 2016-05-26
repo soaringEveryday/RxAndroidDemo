@@ -6,4 +6,7 @@
     <string name="title_activity_map_scan">MapScanActivity</string>
     <string name="title_activity_zip">ZipActivity</string>
     <string name="title_activity_schedulers">SchedulersActivity</string>
+    <string name="title_activity_download_file">DownloadFileActivity</string>
+    <string name="downloading">downloading</string>
+    <string name="finished">finished</string>
 </resources>

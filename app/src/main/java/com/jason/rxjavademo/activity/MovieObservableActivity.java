@@ -66,26 +66,28 @@ public class MovieObservableActivity extends AppCompatActivity {
                 .getTopMovie(0, 20)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<BaseEntity>() {
-            @Override
-            public void onCompleted() {
+                .subscribe(new Subscriber<BaseEntity<List<MovieEntity>>>() {
+                    @Override
+                    public void onCompleted() {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
 
-            }
+                    }
 
-            @Override
-            public void onNext(BaseEntity baseEntity) {
-                if (baseEntity != null) {
-                    List<MovieEntity> movieEntities = baseEntity.getSubjects();
-                    mData.addAll(movieEntities);
-                    mAdapter.notifyDataSetChanged();
-                }
-            }
-        });
+                    @Override
+                    public void onNext(BaseEntity<List<MovieEntity>> listBaseEntity) {
+                        if (listBaseEntity != null) {
+                            List<MovieEntity> movieEntities = listBaseEntity.getSubjects();
+                            mData.addAll(movieEntities);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+
+
     }
 
     @Override

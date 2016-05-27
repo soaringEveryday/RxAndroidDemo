@@ -5,6 +5,9 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,7 +24,6 @@ public class ConnectionBase {
     private static Retrofit retrofit2;
     private static ApiEndpointInterface apiService;
     private static ApiEndpointInterfaceObservable apiService2;
-
 
     public ConnectionBase() {
 
@@ -51,7 +53,10 @@ public class ConnectionBase {
 //        // Add the interceptor to OkHttpClient
 //        OkHttpClient client = new OkHttpClient();
 //        client.interceptors().add(interceptor);
-//
+
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.connectTimeout(5, TimeUnit.SECONDS);
+
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
         // Set the custom client when building adapter
@@ -68,6 +73,7 @@ public class ConnectionBase {
         // RxJava -- begin
         retrofit2 = new Retrofit.Builder()
                 .baseUrl(SERVER_URL)
+                .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();

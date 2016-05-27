@@ -60,12 +60,12 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     private void loadMovies() {
-        Call<BaseEntity> call = ConnectionBase.getApiService().getTopMovie(0, 20);
-        call.enqueue(new Callback<BaseEntity>() {
+        Call<BaseEntity<List<MovieEntity>>> call = ConnectionBase.getApiService().getTopMovie(0, 20);
+        call.enqueue(new Callback<BaseEntity<List<MovieEntity>>>() {
             @Override
-            public void onResponse(Call<BaseEntity> call, Response<BaseEntity> response) {
+            public void onResponse(Call<BaseEntity<List<MovieEntity>>> call, Response<BaseEntity<List<MovieEntity>>> response) {
                 if (response != null) {
-                    BaseEntity baseEntity = response.body();
+                    BaseEntity<List<MovieEntity>> baseEntity = response.body();
                     if (baseEntity != null) {
                         List<MovieEntity> movieEntities = baseEntity.getSubjects();
                         mData.addAll(movieEntities);
@@ -75,7 +75,7 @@ public class MovieActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BaseEntity> call, Throwable t) {
+            public void onFailure(Call<BaseEntity<List<MovieEntity>>> call, Throwable t) {
 
             }
         });

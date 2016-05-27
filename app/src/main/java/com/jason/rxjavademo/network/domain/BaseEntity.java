@@ -1,11 +1,9 @@
 package com.jason.rxjavademo.network.domain;
 
-import java.util.List;
-
 /**
  * Created by Chen Haitao on 2016/5/27.
  */
-public class BaseEntity {
+public class BaseEntity<T> {
 
     /**
      * count : 10
@@ -19,7 +17,7 @@ public class BaseEntity {
     private int start;
     private int total;
     private String title;
-    private List<MovieEntity> subjects;
+    private T subjects;
 
     public int getCount() {
         return count;
@@ -53,11 +51,11 @@ public class BaseEntity {
         this.title = title;
     }
 
-    public List<MovieEntity> getSubjects() {
+    public T getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(List<MovieEntity> subjects) {
+    public void setSubjects(T subjects) {
         this.subjects = subjects;
     }
 }

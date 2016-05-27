@@ -32,6 +32,7 @@ public class MovieActivity extends AppCompatActivity {
 
     private BaseAdapter mAdapter;
     private ArrayList<MovieEntity> mData;
+    private Call<BaseEntity<List<MovieEntity>>> call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     private void loadMovies() {
-        Call<BaseEntity<List<MovieEntity>>> call = ConnectionBase.getApiService().getTopMovie(0, 20);
+        call = ConnectionBase.getApiService().getTopMovie(0, 20);
         call.enqueue(new Callback<BaseEntity<List<MovieEntity>>>() {
             @Override
             public void onResponse(Call<BaseEntity<List<MovieEntity>>> call, Response<BaseEntity<List<MovieEntity>>> response) {
@@ -81,4 +82,10 @@ public class MovieActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // prevent memory leak, here need to be managed by BaseActivity
+        call.cancel();
+    }
 }

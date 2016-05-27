@@ -13,11 +13,29 @@ public class BaseEntity<T> {
      * title : 豆瓣电影Top250
      */
 
+    private int resultCode;
+    private String resultMessage;
     private int count;
     private int start;
     private int total;
     private String title;
     private T subjects;
+
+    public int getResultCode() {
+        return resultCode;
+    }
+
+    public void setResultCode(int resultCode) {
+        this.resultCode = resultCode;
+    }
+
+    public String getResultMessage() {
+        return resultMessage;
+    }
+
+    public void setResultMessage(String resultMessage) {
+        this.resultMessage = resultMessage;
+    }
 
     public int getCount() {
         return count;

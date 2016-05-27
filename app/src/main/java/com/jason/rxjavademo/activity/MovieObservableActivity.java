@@ -11,7 +11,7 @@ import com.jason.rxjavademo.R;
 import com.jason.rxjavademo.adapter.CommonAdapter;
 import com.jason.rxjavademo.adapter.ViewHolder;
 import com.jason.rxjavademo.network.base.ConnectionBase;
-import com.jason.rxjavademo.network.domain.BaseEntity;
+import com.jason.rxjavademo.network.base.HttpResultFunc;
 import com.jason.rxjavademo.network.domain.MovieEntity;
 import com.jason.rxjavademo.utils.ImageLoader;
 
@@ -64,9 +64,10 @@ public class MovieObservableActivity extends AppCompatActivity {
     private void loadMovies() {
         subscription = ConnectionBase.getApiService2()
                 .getTopMovie(0, 20)
+                .map(new HttpResultFunc<List<MovieEntity>>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<BaseEntity<List<MovieEntity>>>() {
+                .subscribe(new Subscriber<List<MovieEntity>>() {
                     @Override
                     public void onCompleted() {
 
@@ -78,14 +79,37 @@ public class MovieObservableActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(BaseEntity<List<MovieEntity>> listBaseEntity) {
-                        if (listBaseEntity != null) {
-                            List<MovieEntity> movieEntities = listBaseEntity.getSubjects();
-                            mData.addAll(movieEntities);
-                            mAdapter.notifyDataSetChanged();
-                        }
+                    public void onNext(List<MovieEntity> movieEntities) {
+                        mData.addAll(movieEntities);
+                        mAdapter.notifyDataSetChanged();
                     }
                 });
+
+// --> no use the custom error handle map operator
+//                .getTopMovie(0, 20)
+//                .map(new HttpResultFunc<List<MovieEntity>>())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<BaseEntity<List<MovieEntity>>>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(BaseEntity<List<MovieEntity>> listBaseEntity) {
+//                        if (listBaseEntity != null) {
+//                            List<MovieEntity> movieEntities = listBaseEntity.getSubjects();
+//                            mData.addAll(movieEntities);
+//                            mAdapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                });
 
 
     }
@@ -93,7 +117,7 @@ public class MovieObservableActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        // prevent memory leak
+        // prevent memory leak, here need to be managed by BaseActivity
         if (!subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }

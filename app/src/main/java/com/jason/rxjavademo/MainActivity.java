@@ -14,9 +14,11 @@ import android.view.View;
 import com.jason.rxjavademo.activity.AppInfoActivity;
 import com.jason.rxjavademo.activity.DownloadFileActivity;
 import com.jason.rxjavademo.activity.MapScanActivity;
+import com.jason.rxjavademo.activity.MovieActivity;
 import com.jason.rxjavademo.activity.SchedulersActivity;
 import com.jason.rxjavademo.activity.TextSearchActivity;
 import com.jason.rxjavademo.activity.ZipActivity;
+import com.jason.rxjavademo.network.base.ConnectionBase;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        ConnectionBase.init(getApplicationContext());
 
     }
 
@@ -88,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.btnMapScan,
             R.id.btnZip,
             R.id.btnSchedulers,
-            R.id.btnDownloadFile
+            R.id.btnDownloadFile,
+            R.id.btnRetrofitCallBack
     })
     public void onClick(View view) {
         Intent intent;
@@ -121,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnDownloadFile:
                 intent = new Intent(this, DownloadFileActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnRetrofitCallBack:
+                intent = new Intent(this, MovieActivity.class);
                 startActivity(intent);
                 break;
         }

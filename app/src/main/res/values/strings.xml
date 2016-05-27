@@ -9,4 +9,5 @@
     <string name="title_activity_download_file">DownloadFileActivity</string>
     <string name="downloading">downloading</string>
     <string name="finished">finished</string>
+    <string name="title_activity_movie">MovieActivity</string>
 </resources>

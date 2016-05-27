@@ -56,6 +56,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="download file"/>
+
+            <Button
+                android:id="@+id/btnRetrofitCallBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Retrofit Callback"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

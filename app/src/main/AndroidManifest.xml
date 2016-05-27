@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -54,6 +53,11 @@
         <activity
             android:name=".activity.DownloadFileActivity"
             android:label="@string/title_activity_download_file"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.MovieActivity"
+            android:label="@string/title_activity_movie"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

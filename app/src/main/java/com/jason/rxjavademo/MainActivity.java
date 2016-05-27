@@ -15,6 +15,7 @@ import com.jason.rxjavademo.activity.AppInfoActivity;
 import com.jason.rxjavademo.activity.DownloadFileActivity;
 import com.jason.rxjavademo.activity.MapScanActivity;
 import com.jason.rxjavademo.activity.MovieActivity;
+import com.jason.rxjavademo.activity.MovieObservableActivity;
 import com.jason.rxjavademo.activity.SchedulersActivity;
 import com.jason.rxjavademo.activity.TextSearchActivity;
 import com.jason.rxjavademo.activity.ZipActivity;
@@ -93,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.btnZip,
             R.id.btnSchedulers,
             R.id.btnDownloadFile,
-            R.id.btnRetrofitCallBack
+            R.id.btnRetrofitCallBack,
+            R.id.btnRetrofitObservable
     })
     public void onClick(View view) {
         Intent intent;
@@ -130,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnRetrofitCallBack:
                 intent = new Intent(this, MovieActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnRetrofitObservable:
+                intent = new Intent(this, MovieObservableActivity.class);
                 startActivity(intent);
                 break;
         }

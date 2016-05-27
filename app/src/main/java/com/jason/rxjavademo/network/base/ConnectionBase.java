@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -17,7 +18,10 @@ public class ConnectionBase {
     static String SERVER_URL = "https://api.douban.com/v2/movie/";
 
     private static Retrofit retrofit;
+    private static Retrofit retrofit2;
     private static ApiEndpointInterface apiService;
+    private static ApiEndpointInterfaceObservable apiService2;
+
 
     public ConnectionBase() {
 
@@ -59,6 +63,18 @@ public class ConnectionBase {
 
         // Create endpoint service
         apiService = retrofit.create(ApiEndpointInterface.class);
+
+
+        // RxJava -- begin
+        retrofit2 = new Retrofit.Builder()
+                .baseUrl(SERVER_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+
+        apiService2 = retrofit2.create(ApiEndpointInterfaceObservable.class);
+
+        // RxJava -- end
     }
 
 
@@ -69,4 +85,13 @@ public class ConnectionBase {
             throw new IllegalStateException("apiService not initialized");
         }
     }
+
+    public static ApiEndpointInterfaceObservable getApiService2() {
+        if (apiService2 != null) {
+            return apiService2;
+        } else {
+            throw new IllegalStateException("apiService not initialized");
+        }
+    }
+
 }

@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jason.rxjavademo.R;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.plugins.RxAndroidPlugins;
 import rx.functions.Func2;
 
 
@@ -95,7 +97,40 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
     }
 
+    private void bindViewByRxBinding() {
+        Observable<CharSequence> ObservableEmail = RxTextView.textChanges(mEmailView);
+        Observable<CharSequence> ObservablePassword = RxTextView.textChanges(mPasswordView);
+
+        Observable.combineLatest(ObservableEmail, ObservablePassword, new Func2<CharSequence, CharSequence, Boolean>() {
+            @Override
+            public Boolean call(CharSequence email, CharSequence password) {
+                return isEmailValid(email.toString()) && isPasswordValid(password.toString());
+            }
+        }).subscribe(new Subscriber<Boolean>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Boolean verify) {
+                if (verify) {
+                    mEmailSignInButton.setEnabled(true);
+                } else {
+                    mEmailSignInButton.setEnabled(false);
+                }
+            }
+        });
+
+    }
+
     private void bindView() {
+
         Observable<String> ObservableEmail = Observable.create(new Observable.OnSubscribe<String>() {
 
             @Override

@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.jason.rxjavademo.activity.AppInfoActivity;
 import com.jason.rxjavademo.activity.DownloadFileActivity;
+import com.jason.rxjavademo.activity.LoginActivity;
 import com.jason.rxjavademo.activity.MapScanActivity;
 import com.jason.rxjavademo.activity.MovieActivity;
 import com.jason.rxjavademo.activity.MovieObservableActivity;
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.btnSchedulers,
             R.id.btnDownloadFile,
             R.id.btnRetrofitCallBack,
-            R.id.btnRetrofitObservable
+            R.id.btnRetrofitObservable,
+            R.id.btnLoginVerify
     })
     public void onClick(View view) {
         Intent intent;
@@ -136,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnRetrofitObservable:
                 intent = new Intent(this, MovieObservableActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnLoginVerify:
+                intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
         }

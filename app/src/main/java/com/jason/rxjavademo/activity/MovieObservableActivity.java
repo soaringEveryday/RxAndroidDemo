@@ -85,6 +85,7 @@ public class MovieObservableActivity extends AppCompatActivity {
                     }
                 });
 
+
 // --> no use the custom error handle map operator
 //                .getTopMovie(0, 20)
 //                .map(new HttpResultFunc<List<MovieEntity>>())

@@ -132,4 +132,6 @@ public class MapScanActivity extends AppCompatActivity {
         }
     }
 
+
+
 }

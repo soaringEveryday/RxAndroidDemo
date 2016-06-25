@@ -17,6 +17,7 @@ import com.jason.rxjavademo.activity.LoginActivity;
 import com.jason.rxjavademo.activity.MapScanActivity;
 import com.jason.rxjavademo.activity.MovieActivity;
 import com.jason.rxjavademo.activity.MovieObservableActivity;
+import com.jason.rxjavademo.activity.RaceActivity;
 import com.jason.rxjavademo.activity.SchedulersActivity;
 import com.jason.rxjavademo.activity.TextSearchActivity;
 import com.jason.rxjavademo.activity.ZipActivity;
@@ -97,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.btnDownloadFile,
             R.id.btnRetrofitCallBack,
             R.id.btnRetrofitObservable,
-            R.id.btnLoginVerify
+            R.id.btnLoginVerify,
+            R.id.btnRace
     })
     public void onClick(View view) {
         Intent intent;
@@ -142,6 +144,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.btnLoginVerify:
                 intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnRace:
+                intent = new Intent(this, RaceActivity.class);
                 startActivity(intent);
                 break;
         }

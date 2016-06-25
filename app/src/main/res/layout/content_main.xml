@@ -74,6 +74,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Login Verify"/>
+
+            <Button
+                android:id="@+id/btnRace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Race"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

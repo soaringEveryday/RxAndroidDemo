@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_race"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jason.rxjavademo.activity.RaceActivity">
+
+    <EditText
+        android:layout_width="218dp"
+        android:layout_height="46dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_race"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/activity_race"
+        android:layout_marginTop="52dp"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/activity_race"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        android:layout_marginBottom="54dp"
+        tools:layout_constraintBottom_creator="1"/>
+
+    <EditText
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText2"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_race"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/activity_race"
+        android:layout_marginTop="136dp"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/activity_race"
+        tools:layout_constraintRight_creator="1"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText4"
+        app:layout_constraintLeft_toLeftOf="@+id/editText2"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        android:layout_marginTop="50dp"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/editText2"
+        tools:layout_constraintRight_creator="1"/>
+
+    <Button
+        android:text="race"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:id="@+id/button"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_race"
+        app:layout_constraintRight_toRightOf="@+id/activity_race"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_race"
+        android:layout_marginBottom="30dp"/>
+</android.support.constraint.ConstraintLayout>

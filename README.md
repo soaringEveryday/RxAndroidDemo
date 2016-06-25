@@ -1,1 +1,1 @@
-## RxAndroidDemo - show how to user RxJava and RxAndroid
+## RxAndroidDemo - show how to use RxJava and RxAndroid
